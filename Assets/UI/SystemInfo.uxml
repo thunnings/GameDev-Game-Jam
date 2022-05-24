@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/SystemInfo.uss?fileID=7433441132597879392&amp;guid=ba3eea2bffa80944eadbee3e5fd2b74a&amp;type=3#SystemInfo" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement name="topPadding" style="flex-grow: 1;" />
+        <ui:VisualElement name="mainContainer" style="flex-direction: row;">
+            <ui:VisualElement name="leftPadding" style="flex-grow: 1;" />
+            <ui:VisualElement name="starSystemWindow" style="height: 600px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; align-items: stretch; width: 350px;">
+                <ui:VisualElement name="starSystemNameContainer" class="maxSize" style="height: 40px; align-items: center; justify-content: center; flex-basis: auto; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgb(132, 127, 127);">
+                    <ui:Label display-tooltip-when-elided="true" name="SystemName" text="test" class="titleText" />
+                </ui:VisualElement>
+                <ui:VisualElement name="starSystemInformationContainer" class="maxSize" style="height: 122px; flex-grow: 1; background-color: rgb(132, 127, 127); max-height: none;">
+                    <ui:Label text="test test test" display-tooltip-when-elided="true" name="SystemDescription" class="bodyText" style="flex-wrap: nowrap; white-space: normal;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="buttonContainer" class="maxSize" style="flex-direction: row; flex-grow: 0; justify-content: flex-end; align-items: stretch; bottom: auto;">
+                    <ui:Button text="Cancel" display-tooltip-when-elided="true" name="cancelButton" class="button" />
+                    <ui:Button text="Set Destination" display-tooltip-when-elided="true" name="setDestinationButton" class="button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="rightPadding" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="bottomPadding" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

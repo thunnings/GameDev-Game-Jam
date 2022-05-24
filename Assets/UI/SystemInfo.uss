@@ -1,0 +1,78 @@
+.titleText {
+    -unity-font: url('project://database/Assets/Fonts/Quantum.otf?fileID=12800000&guid=472f27cdaeee29044a9f460d0a769add&type=3#Quantum');
+    color: rgb(47, 47, 224);
+    font-size: 24px;
+    -unity-text-align: middle-center;
+    justify-content: flex-start;
+    -unity-font-definition: url('project://database/Assets/Fonts/Quantum%20SDF.asset?fileID=11400000&guid=0e14dea7c42d4034393fa4425c4f30cd&type=2#Quantum SDF');
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left-color: rgba(67, 80, 91, 255);
+    border-right-color: rgba(67, 80, 91, 255);
+    border-top-color: rgba(67, 80, 91, 255);
+    border-bottom-color: rgba(67, 80, 91, 255);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 100%;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.bodyText {
+    -unity-font: url('project://database/Assets/Fonts/Quantum.otf?fileID=12800000&guid=472f27cdaeee29044a9f460d0a769add&type=3#Quantum');
+    -unity-font-definition: url('project://database/Assets/Fonts/Quantum%20SDF.asset?fileID=11400000&guid=0e14dea7c42d4034393fa4425c4f30cd&type=2#Quantum SDF');
+    border-left-color: rgba(67, 80, 91, 255);
+    border-right-color: rgba(67, 80, 91, 255);
+    border-top-color: rgba(67, 80, 91, 255);
+    border-bottom-color: rgba(67, 80, 91, 255);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 100%;
+    height: 100%;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: rgba(0, 0, 0, 255);
+}
+
+.button {
+    -unity-font: url('project://database/Assets/Fonts/Quantum.otf?fileID=12800000&guid=472f27cdaeee29044a9f460d0a769add&type=3#Quantum');
+    width: 120px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -unity-font-definition: url('project://database/Assets/Fonts/Quantum%20SDF.asset?fileID=11400000&guid=0e14dea7c42d4034393fa4425c4f30cd&type=2#Quantum SDF');
+}
+
+.maxSize {
+    max-width: 350px;
+    max-height: 200px;
+}
