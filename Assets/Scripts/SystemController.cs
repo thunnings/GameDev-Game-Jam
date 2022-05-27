@@ -30,15 +30,21 @@ public class SystemController : MonoBehaviour
 
         cancelButton.clickable.clicked += CancelButton;
         setDestinationButton.clickable.clicked += SetDestinationButton;
-
-        FormatStarSystemInfoPanel();
     }
 
     private void FormatStarSystemInfoPanel()
     {
+        float distanceFromStarship = DistanceFromStarship(starShip);
+        distanceFromStarship = MathF.Round(distanceFromStarship);
+        
+        float travelTime = distanceFromStarship / starShip.GetSpeed();
+        travelTime = MathF.Round(travelTime);
+
+
         starSystemInfoPanel.rootVisualElement.Q<Label>("SystemName").text = starSystem.systemName;
         starSystemInfoPanel.rootVisualElement.Q<Label>("SystemDescription").text = "Coordinates: " + starSystem.systemLocation.ToString() + "\n"
-            + DistanceFromStarship(starShip) + " lightyears away.";
+            + distanceFromStarship + " units away." + "\n"
+            + "Travel time: " + travelTime + " years";
     }
 
     public void CancelButton()
@@ -49,6 +55,9 @@ public class SystemController : MonoBehaviour
     private void SetDestinationButton()
     {
 
+        starSystemInfoPanel.rootVisualElement.visible = false;
+        StarSystem thisSystem = this.GetComponent<StarSystem>();
+        starShip.SetDestination(thisSystem);
     }
 
     void OnMouseEnter()
@@ -66,11 +75,12 @@ public class SystemController : MonoBehaviour
     {
         starSystemMouseClick.Raise();
         cancelButtonClick.Raise();
+        FormatStarSystemInfoPanel();
         starSystemInfoPanel.rootVisualElement.visible = true;
     }
 
     private float DistanceFromStarship(StarShip starShip)
     {
-        return Vector3.Distance(starShip.GetLocation(), starSystem.systemLocation);
+        return Vector3.Distance(starShip.GetLocation().systemLocation, starSystem.systemLocation);
     }
 }

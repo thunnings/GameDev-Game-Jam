@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 	// Initialize the singleton instance.
 	private void Awake()
 	{
-		// If there is not already an instance of SoundManager, set it to this.
+		// If there is not already an instance of AudioManager, set it to this.
 		if (Instance == null)
 		{
 			Instance = this;
@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		//Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
+		//Set AudioManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
 		DontDestroyOnLoad(gameObject);
 	}
 
