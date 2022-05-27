@@ -24,7 +24,7 @@ public class Crew
         }
     }
 
-    public void CalculateTravelYear()
+    public void CalculateTravelYear(Journey journey)
     {
         CrewMember.Status status;
 
@@ -37,12 +37,14 @@ public class Crew
                     break;
                 case CrewMember.Status.birth:
                     crewTotal++;
+                    journey.totalBirths++;
                     CrewMember newBirth = new CrewMember();
                     crewMembers.Add(newBirth);
                     break;
                 case CrewMember.Status.dead:
                     crewMembers.RemoveAt(i);
                     crewTotal--;
+                    journey.totalDeaths++;
                     break;
             }
         }

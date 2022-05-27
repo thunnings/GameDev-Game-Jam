@@ -11,8 +11,8 @@ public class SystemController : MonoBehaviour
     public GameEvent cancelButtonClick;
     public UIDocument starSystemInfoPanel;
     public StarSystem starSystem;
+    public SpriteRenderer spriteRenderer;
 
-    SpriteRenderer spriteRenderer;
     Button cancelButton;
     Button setDestinationButton;
     StarShip starShip;

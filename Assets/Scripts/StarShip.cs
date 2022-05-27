@@ -2,24 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class StarShip : MonoBehaviour
 {
 	public static StarShip Instance = null;
 
 	public StarSystem currentSystem;
+	public UIDocument journeyInfoPanel;
 	public int currentYear = 0;
-
-	public Crew crew;
 	public int maximumPassengers = 5000;
 	public int currentPassengers;
+	public Button okButton;
+	public GameEvent updateUniverse;
+
+	public Crew crew;
+
+	public List<Journey> journeys = new List<Journey>();
 
 	float starShipSpeed = 2f;
 
-	public List<Journey> journeys = new List<Journey>();
 	
 	// Initialize the singleton instance.
-	private void Awake()
+	private void Start()
 	{
 		// If there is not already an instance of StarShip, set it to this.
 		if (Instance == null)
@@ -36,6 +41,18 @@ public class StarShip : MonoBehaviour
 
 		crew = new Crew();
 		currentPassengers = crew.crewTotal;
+		
+		journeyInfoPanel.rootVisualElement.visible = false;
+
+		okButton = journeyInfoPanel.rootVisualElement.Q<Button>("okButton");
+		okButton.clickable.clicked += OkButton;
+
+		updateUniverse.Raise();
+	}
+
+	private void OkButton()
+	{
+		journeyInfoPanel.rootVisualElement.visible = false;
 	}
 
 	public int GetDate()
@@ -63,14 +80,16 @@ public class StarShip : MonoBehaviour
 
 		currentYear += (int)travelTime;
 		currentSystem = destination;
+
+		updateUniverse.Raise();
 	}
 
 	private void JourneyToDestination(int years)
 	{
 		Journey journey = new Journey();
-
-		int totalDeaths = 0;
-		int totalBirths = 0;
+		journey.yearStarted = currentYear;
+		journey.length = years;
+		journey.journeyNumber = journeys.Count;
 
 		for (int i = 0; i < years; i++)
 		{
@@ -78,12 +97,37 @@ public class StarShip : MonoBehaviour
 		}
 
 		journeys.Add(journey);
+		journey.journeyNumber = journeys.Count;
 		currentPassengers = crew.crewTotal;
 
-		/*
-		Debug.Log("Total Deaths: " + totalDeaths);
-		Debug.Log("Total Births: " + totalBirths);
-		Debug.Log("Overall population change: " + (totalBirths - totalDeaths));
-		*/
+		PopulateJourneyInfoPanel(journey);
+		journeyInfoPanel.rootVisualElement.visible = true;
+	}
+
+	private void PopulateJourneyInfoPanel(Journey journey)
+	{
+		if (currentPassengers > 0)
+		{
+			journeyInfoPanel.rootVisualElement.Q<Label>("JourneyName").text = "Journey #" + journey.journeyNumber;
+			journeyInfoPanel.rootVisualElement.Q<Label>("JourneyDescription").text = "Length: " + journey.length + " years." + "\n"
+				+ "Total Deaths: " + journey.totalDeaths + "\n"
+				+ "Total Births: " + journey.totalBirths + "\n"
+				+ "\n"
+				+ "Remaining crew: " + currentPassengers;
+		}
+		else
+			journeyInfoPanel.rootVisualElement.Q<Label>("JourneyDescription").text = "All passengers have perished." + "\n"
+				+ "\n"
+				+ "You lasted for " + journey.journeyNumber + " journeys." + "\n"
+				+ "\n"
+				+ "GAME OVER";
+	}
+
+	private void PrintJourney(Journey journey)
+	{
+		Debug.Log("Start year: " + journey.yearStarted);
+		Debug.Log("Length: " + journey.length);
+		Debug.Log("Total births: " + journey.totalBirths);
+		Debug.Log("Total deaths: " + journey.totalDeaths);
 	}
 }

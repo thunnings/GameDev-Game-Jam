@@ -6,5 +6,4 @@ public class StarSystem : MonoBehaviour
 {
     public string systemName;
     public Vector3 systemLocation;
-
 }

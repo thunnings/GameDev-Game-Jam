@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,21 +8,23 @@ public class Universe : MonoBehaviour
     public List<StarSystem> starSystems;
     public StarShip starShip;
 
-    private void Update()
+    public void UpdateUniverse()
     {
         Renderer[] renderers;
         CircleCollider2D collider;
+        SpriteRenderer spriteRenderer;
 
         foreach(StarSystem system in starSystems)
         {
             renderers = system.gameObject.GetComponentsInChildren<Renderer>();
+            spriteRenderer = system.gameObject.GetComponentInChildren<SpriteRenderer>();
             collider = system.gameObject.GetComponent<CircleCollider2D>();
 
             if (starShip.GetLocation() == system)
             {            
                 for(int i=0; i<renderers.Length; i++)
                 {
-                    renderers[i].enabled = false;
+                    spriteRenderer.color = Color.red;
                     collider.enabled = false;
                 }
             }
@@ -29,6 +32,7 @@ public class Universe : MonoBehaviour
             {
                 for (int i = 0; i < renderers.Length; i++)
                 {
+                    spriteRenderer.color = Color.white;
                     renderers[i].enabled = true;
                     collider.enabled = true;
                 }
