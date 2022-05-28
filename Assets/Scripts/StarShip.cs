@@ -106,6 +106,34 @@ public class StarShip : MonoBehaviour
 
 	private void PopulateJourneyInfoPanel(Journey journey)
 	{
+		int command = 0;
+		int security = 0;
+		int engineer = 0;
+		int medical = 0;
+		int support = 0;
+
+		foreach(CrewMember crewMember in crew.crewMembers)
+		{
+			switch (crewMember.GetCareer())
+			{
+				case CrewMember.Career.command:
+					command++;
+					break;
+				case CrewMember.Career.security:
+					security++;
+					break;
+				case CrewMember.Career.engineer:
+					engineer++;
+					break;
+				case CrewMember.Career.medical:
+					medical++;
+					break;
+				case CrewMember.Career.support:
+					support++;
+					break;
+			}
+		}
+
 		if (currentPassengers > 0)
 		{
 			journeyInfoPanel.rootVisualElement.Q<Label>("JourneyName").text = "Journey #" + journey.journeyNumber;
@@ -113,7 +141,12 @@ public class StarShip : MonoBehaviour
 				+ "Total Deaths: " + journey.totalDeaths + "\n"
 				+ "Total Births: " + journey.totalBirths + "\n"
 				+ "\n"
-				+ "Remaining crew: " + currentPassengers;
+				+ "Remaining crew: " + currentPassengers + "\n"
+				+ "Command: " + command + "\n"
+				+ "Security: " + security + "\n"
+				+ "Engineering: " + engineer + "\n"
+				+ "Medical: " + medical + "\n"
+				+ "Support: " + support + "\n";
 		}
 		else
 			journeyInfoPanel.rootVisualElement.Q<Label>("JourneyDescription").text = "All passengers have perished." + "\n"

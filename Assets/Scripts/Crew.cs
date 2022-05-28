@@ -20,7 +20,8 @@ public class Crew
         foreach(CrewMember member in crewMembers)
         {
             member.RandomAge();
-            member.AssignCareer();
+            if ( member.GetAge() > 17 )
+                member.AssignCareer();
         }
     }
 

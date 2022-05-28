@@ -5,6 +5,8 @@ using UnityEngine;
 public class CrewMember
 {   public enum Sex { male, female };
     public enum Status { alive, dead, birth };
+    public enum Career { command, security, engineer, medical, support };
+    int NumberCareers = 5;
 
 
     [SerializeField]
@@ -12,6 +14,7 @@ public class CrewMember
 
     int maxAge = 120;
     Sex sex;
+    Career career;
 
     [Range(0, .1f)]
     float birthRate = 0.015f;
@@ -35,12 +38,42 @@ public class CrewMember
 
     public void AssignCareer()
     {
-        //code to randomize what career the crewmember will be
+        switch (Random.Range(1, NumberCareers + 1))
+        {
+            case 1:
+                career = Career.command;
+                birthRate = 0.005f;
+                deathRate = 0.0045f;
+                break;
+            case 2:
+                birthRate = 0.004f;
+                deathRate = 0.01f;
+                career = Career.security;
+                break;
+            case 3:
+                birthRate = 0.01f;
+                deathRate = 0.0065f;
+                career = Career.engineer;
+                break;
+            case 4:
+                birthRate = 0.009f;
+                deathRate = 0.0035f;
+                career = Career.medical;
+                break;
+            case 5:
+                birthRate = 0.02f;
+                deathRate = 0.0015f;
+                career = Career.support;
+                break;
+        }
     }
 
     public Status TravelYear()
     {
         age++;
+
+        if (age > 17)
+            AssignCareer();
 
         if (age > maxAge)
             return Status.dead;
@@ -68,6 +101,11 @@ public class CrewMember
     public Sex GetSex()
     {
         return sex;
+    }
+
+    public Career GetCareer()
+    {
+        return career;
     }
 
     public static float RandomGaussian(float minValue = 0.0f, float maxValue = 1.0f)
